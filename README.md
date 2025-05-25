@@ -21,6 +21,8 @@ composer require nigus-ab/laravel-permify
 php artisan vendor:publish --provider="Permify\PermifyServiceProvider" --tag="config"
 php artisan vendor:publish --provider="Permify\PermifyServiceProvider" --tag="views"
 php artisan vendor:publish --provider="Permify\PermifyServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Permify\PermifyServiceProvider" --tag="traits"
+php artisan vendor:publish --tag="views"
 
 Publish all assets with:
 

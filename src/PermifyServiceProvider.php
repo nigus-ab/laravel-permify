@@ -29,6 +29,17 @@ class PermifyServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views/permify' => resource_path('views/vendor/permify'),
         ], 'views');
 
+        // Publish Traits
+        $this->publishes([
+            __DIR__.'/../src/Traits/HasAdvancedRoles.php' => app_path('Traits/HasAdvancedRoles.php'),
+        ], 'traits');
+
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/permify'),
+        ], 'views');
+
+
     }
 
     public function register()
