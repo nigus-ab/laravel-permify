@@ -26,8 +26,9 @@ class PermifyServiceProvider extends ServiceProvider
         // Load views and allow publishing
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'permify');
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/permify'),
+            __DIR__.'/../resources/views/permify' => resource_path('views/vendor/permify'),
         ], 'views');
+
     }
 
     public function register()

@@ -25,4 +25,15 @@ class Role extends Model
         // Note: assumes your User model is in App\Models\User
         return $this->belongsToMany(config('auth.providers.users.model'), 'role_user');
     }
+
+    public function givePermissionTo($permission)
+    {
+        if (is_string($permission)) {
+            $permission = Permission::where('name', $permission)->firstOrFail();
+        }
+
+        $this->permissions()->syncWithoutDetaching($permission);
+
+        return $this;
+    }
 }
