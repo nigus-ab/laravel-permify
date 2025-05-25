@@ -1,0 +1,137 @@
+laravel-permify/
+├── src/
+│   ├── PermifyServiceProvider.php
+│   ├── Traits/HasAdvancedRoles.php
+│   ├── Middleware/CheckPermission.php
+│   ├── Models/Role.php
+│   ├── Models/Permission.php
+│   ├── Facades/Permify.php
+│   └── Helpers/PermissionRegistrar.php
+│
+├── config/
+│   └── permify.php
+│
+├── database/
+│   └── migrations/
+│       ├── create_roles_table.php
+│       └── create_permissions_table.php
+│
+├── resources/
+│   └── views/ (optional dashboard UI)
+│
+├── routes/
+│   └── web.php (optional admin interface)
+│
+├── composer.json
+├── README.md
+└── LICENSE
+
+
+php artisan vendor:publish --tag=config
+Usage
+
+use Permify\Traits\HasAdvancedRoles;
+
+class User extends Authenticatable
+{
+    use HasAdvancedRoles;
+}
+
+Assign role and permission:
+
+$user->assignRole('admin');
+$user->givePermissionTo('edit_post');
+
+Check access:
+
+if ($user->hasPermission('edit_post')) {
+    // show edit UI
+}
+
+Usage in Blade
+
+@permission('delete_post')
+    <button>Delete</button>
+@endpermission
+
+Usage in Routes
+
+Route::middleware(['permission:edit_post'])->group(function () {
+    Route::get('/edit-post', 'PostController@edit');
+});
+
+Step 1: Push to GitHub
+
+git init
+git remote add origin https://github.com/yourusername/laravel-permify.git
+git branch -M main
+git push -u origin main
+git add .
+git commit -m "Initial release"
+git push -u origin main
+
+Step 2: Submit to Packagist
+
+    Go to https://packagist.org/packages/submit
+
+    Enter your GitHub repo URL
+
+    Hit “Check” — it will auto-detect your composer.json
+
+    Done! Your package is now installable with:
+   composer require yourvendor/laravel-permify
+
+
+ Optional: Sample Laravel App Integration
+
+To test your package in a Laravel app:
+
+    Create a test Laravel app:
+
+laravel new permify-demo
+cd permify-demo
+
+Link your local package:
+
+composer config repositories.permify path ../laravel-permify
+composer require yourvendor/laravel-permify:dev-main
+//======================================//
+
+docs/
+├── index.html
+├── README.md
+├── guide.md
+├── installation.md
+└── examples.md
+
+    Host it with GitHub Pages or deploy via Vercel:
+
+vercel --prod
+
+Marketing Materials
+🌐 Landing Page (Simple HTML or Laravel Blade)
+🎯 Key Sections:
+
+    Hero Headline: "Advanced Role & Permission Management for Laravel"
+
+    Subheading: "Powerful. Flexible. Developer-Friendly."
+
+    Call-to-Action: "View Docs" or "Install Now"
+
+    Feature Icons (use Heroicons)
+
+    Code Snippets
+
+    GitHub Star Button
+
+🎁 Tools:
+
+    Free HTML template: https://html5up.net
+
+    Use Laravel Breeze/Jetstream for quick launch
+
+    Deploy on Netlify or Vercel
+
+        Usage:
+
+@include('permify::roles.index')
