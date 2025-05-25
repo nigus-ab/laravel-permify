@@ -5,7 +5,7 @@ use Permify\Http\Controllers\RoleController;
 use Permify\Http\Controllers\PermissionController;
 use Permify\Http\Controllers\UserController;
 use Permify\Http\Controllers\Auth\LoginController;
-use Permify\Http\Controllers\Auth\RegisterController
+use Permify\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 
 Route::middleware(['web', 'auth'])->prefix('permify')->group(function () {
