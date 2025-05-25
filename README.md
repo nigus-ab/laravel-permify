@@ -1,28 +1,8 @@
 # Laravel-Permify
 
-**Laravel-Permify** is a flexible, developer-friendly permission and role management package for Laravel.
-
-## Features
-- Role-based and permission-based access
-- Granular control (e.g., field or action-level)
-- Role inheritance
-- Blade directives and middleware
-- Easy integration with Laravel’s auth
-
-## Installation
-
-```bash
-composer require your-vendor/laravel-permify
-php artisan vendor:publish --tag="permify-config"
-php artisan migrate
-
-
-# Laravel Permify
-
 **Laravel Permify** is a powerful, easy-to-use Laravel package for managing roles and permissions with full CRUD UI and middleware support.
 
 ## Features
-
 - Role and Permission management with CRUD operations
 - Middleware to protect routes via permissions (`permission` middleware)
 - Blade directives for easy permission checks (`@permission`)
@@ -35,7 +15,7 @@ php artisan migrate
 Require the package via Composer:
 
 ```bash
-composer require your-vendor/laravel-permify
+composer require nigus-ab/laravel-permify
 
 
 php artisan vendor:publish --provider="Permify\PermifyServiceProvider" --tag="config"
@@ -45,3 +25,6 @@ php artisan vendor:publish --provider="Permify\PermifyServiceProvider" --tag="mi
 Publish all assets with:
 
 php artisan vendor:publish --provider="Permify\PermifyServiceProvider"
+=======
+php artisan migrate
+>>>>>>> d97db44b8e733d9d9c60df00c036fc46b78e154a
