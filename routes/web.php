@@ -6,9 +6,13 @@ use Permify\Http\Controllers\PermissionController;
 use Permify\Http\Controllers\UserController;
 use Permify\Http\Controllers\Auth\LoginController;
 use Permify\Http\Controllers\Auth\RegisterController;
+use Permify\Http\Controllers\Auth\ForgotPasswordController;
+use Permify\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
 
 Route::middleware(['web', 'auth'])->prefix('permify')->group(function () {
+	
+	Route::get('/dashboard', [DashboardController::class, 'index'])->name('permify.dashboard');
     // Role routes
     Route::get('/roles', [RoleController::class, 'index'])->name('permify.roles.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('permify.roles.create');
@@ -27,10 +31,19 @@ Route::middleware(['web', 'auth'])->prefix('permify')->group(function () {
     Route::post('/users', [UserController::class, 'store'])->name('permify.users.store');
 
     // Authentication Routes
-    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    // Login
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('permify.login');
     Route::post('login', [LoginController::class, 'login']);
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('logout', [LoginController::class, 'logout'])->name('permify.logout');
 
-    Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    // Register
+    Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('permify.register');
     Route::post('register', [RegisterController::class, 'register']);
+
+    // Password Reset
+    Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('permify.password.request');
+    Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('permify.password.email');
+
+    Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('permify.password.reset');
+    Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('permify.password.update');
 });
